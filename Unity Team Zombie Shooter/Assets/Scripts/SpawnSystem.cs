@@ -68,7 +68,7 @@ public class SpawnSystem : MonoBehaviour {
                 randomZ = randomZ + Player.gameObject.transform.position.y;
                 Instantiate(zombiePrefab, new Vector3(randomX, 1, randomZ), Quaternion.identity);
 
-                Debug.Log("Spawn at X: " + randomX + " and Y: " + randomZ);
+                //Debug.Log("Spawn at X: " + randomX + " and Y: " + randomZ);
             }
             Debug.Log("Spawning complete");
             spawnEnable = true;
