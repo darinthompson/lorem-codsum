@@ -27,12 +27,13 @@ public class SpawnSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
+        //check for alive zombies
+        aliveZombies = GameObject.FindGameObjectsWithTag("Zombie").Length;
 	}
 
     void Spawn()
     {
-        if(spawnEnable == true)
+        if (spawnEnable == true && aliveZombies == 0)
         {
             float randomX;
             float randomZ;
