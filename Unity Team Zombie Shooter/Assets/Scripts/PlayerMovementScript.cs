@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public float movementSpeed = 5.0f;
+
 	// Update is called once per frame
 	void Update () {
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 5.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 5.0f;
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
 
-        transform.Translate(x, 0, 0);
-        transform.Translate(0, 0, z);
+        transform.position = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 	}
 }
