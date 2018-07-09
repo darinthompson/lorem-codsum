@@ -15,6 +15,7 @@ public class SpawnSystem : MonoBehaviour {
     public int aliveZombies; //alive zombiesi in the current wave
 
     public bool spawnEnable = true; //set true if game is ready to spawn, turn off while spawning.
+    public bool nextWave = false;
 
 	// Use this for initialization
 	void Start ()
@@ -29,7 +30,13 @@ public class SpawnSystem : MonoBehaviour {
     {
         //check for alive zombies
         aliveZombies = GameObject.FindGameObjectsWithTag("Zombie").Length;
-	}
+
+        if ((aliveZombies == 0 || aliveZombies < 0) && nextWave == false)
+        {
+            nextWave = true;
+            StartCoroutine(NextWave());
+        }
+    }
 
     void Spawn()
     {
@@ -66,6 +73,15 @@ public class SpawnSystem : MonoBehaviour {
             Debug.Log("Spawning complete");
             spawnEnable = true;
         }
+    }
+    IEnumerator NextWave()
+    {
+        Debug.Log("Wait 5 sec for next wave");
+        yield return new WaitForSeconds(5);
+        Debug.Log("Wave: " + wave);
+        wave++;
+        nextWave = false;
+        Spawn();
     }
 
 }
